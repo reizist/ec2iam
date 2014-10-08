@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'ec2iam'
+require 'ec2iam/iam_config'
+
+Ec2Iam::CLI.start
