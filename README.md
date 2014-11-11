@@ -7,18 +7,19 @@ Especially, very friendly for [ec2ssh](https://github.com/mirakui/ec2ssh)
 ### 1. Prepare Administrator Account on AWS.
 This gem use administrator account's access_key_id and secret_access_key for manage iam function on aws.
 
-### 2. Edit ``` ~/.aws/iam.yml ```
-For accessing aws, please make ``` ~/.aws/iam.yml ``` and set access key info like below.
+### 2. Edit ``` ~/.aws/iam ```
+For accessing aws, please make ``` ~/.aws/iam ``` and set access key info like below.
 
 ``` ruby
-default: { access_key_id: WURLWEKRJWEIRLSKDJF, secret_access_key: 8fjjwlergJU/fhafHgsdfaoLfl/HsdleiO }
+default: { access_key_id: 'WURLWEKRJWEIRLSKDJF', secret_access_key: '8fjjwlergJU/fhafHgsdfaoLfl/HsdleiO' }
 ```
 
 By default, each command try to access by using ``` default ``` key,
 but if you want to switch aws account, you can set others access key like below.
  
 ``` ruby
-another_profile: { access_key_id: HOEUWLFJSDLFSUIARF, secret_access_key: 7f78LFDLGh/FJDojhg23dklsdHSDldkdi7 }
+default: { access_key_id: 'WURLWEKRJWEIRLSKDJF', secret_access_key: '8fjjwlergJU/fhafHgsdfaoLfl/HsdleiO' }
+another_profile: { access_key_id: 'HOEUWLFJSDLFSUIARF', secret_access_key: '7f78LFDLGh/FJDojhg23dklsdHSDldkdi7' }
 ```
 
 
@@ -40,8 +41,8 @@ Options:
 
 ### options
 
-#### --profile (aliases is '-p')
-Each command can use ``` --profile ``` option to choose aws account on ``` iam.yml ```
+##### --profile (aliases is '-p')
+Each command can use ``` --profile ``` option to choose aws account on config file ``` iam ```
 
 ``` shell
 $ ec2iam list --profile=another_profile
@@ -53,7 +54,7 @@ or
 $ ec2iam list -p another_profile
 ```
 
-#### --all-profiles
+##### --all-profiles
 When you handle multiple accounts(profiles), you are able to exec on all profiles like below.
 
 ``` shell
@@ -62,21 +63,25 @@ $ ec2iam create hoge --all-profiles
 On default:
 create hoge done.
 aws_keys(
-  default: { access_key_id: AKIAJCDTOJHTU26GVFTQ, secret_access_key: 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 }
+  default: { access_key_id: 'AKIAJCDTOJHTU26GVFTQ', secret_access_key: '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' }
 )
 On another_profile:
 create hoge done.
 aws_keys(
-  self: { access_key_id: AKIATWUADITSTEPVLR7A, secret_access_key: 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 }
+  another_profile: { access_key_id: 'AKIATWUADITSTEPVLR7A', secret_access_key: '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' }
 )
 
 ```
+
+#### On create command
+##### --save
+If you add `--save` option, created values are written in ``` ~/.aws/<username>.keys ```.
 
 ## ec2ssh
 * Create IAM credentials.
 ``` ec2iam create hoge --save ```
 
-* Copy each credentials on ``` ~/.aws/hoge.yml ``` to ``` ~/.ec2ssh ```
+* Copy each credentials on ``` ~/.aws/hoge.keys ``` to ``` ~/.ec2ssh ```
 
 * Run ``` ec2ssh update ```
 
