@@ -22,7 +22,7 @@ module Ec2Iam
     def self.format_key(profile, key)
 <<-KEY
 aws_keys(
-  #{profile}: { access_key_id: #{key[:access_key_id]}, secret_access_key: #{key[:secret_access_key]} }
+  #{profile}: { access_key_id: '#{key[:access_key_id]}', secret_access_key: '#{key[:secret_access_key]}' }
 )
 KEY
     end
@@ -51,7 +51,7 @@ KEY
       array.each do |hash|
 
 str << <<-KEYS
-  #{hash[:profile]}: { access_key_id: #{hash[:credentials][:access_key_id]}, secret_access_key: #{hash[:credentials][:secret_access_key]} },
+  #{hash[:profile]}: { access_key_id: '#{hash[:credentials][:access_key_id]}', secret_access_key: '#{hash[:credentials][:secret_access_key]}' },
 KEYS
       end
 
