@@ -5,7 +5,7 @@ module Ec2Iam
     attr_reader :iam, :group, :profile
 
     GROUP_NAME = 'EC2ReadOnly'
-    CONFIG = YAML.load_file(File.join(Dir.home, '.aws/iam.yml')).freeze
+    CONFIG = YAML.load_file(File.join(Dir.home, '.aws/iam')).freeze
 
     def initialize(account_key)
       @profile = account_key
