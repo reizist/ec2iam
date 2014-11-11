@@ -1,0 +1,2 @@
+default: { access_key_id: '', secret_access_key: '' }
+another_profile: { access_key_id: '', secret_access_key: '' }
