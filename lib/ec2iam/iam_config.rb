@@ -40,7 +40,7 @@ KEY
     end
 
     def self.write_key(user_name, formatted_str)
-      File.open("#{Dir.home}/.aws/#{user_name}.yml", "a") do |f|
+      File.open("#{Dir.home}/.aws/#{user_name}.keys", "a") do |f|
         f.write(formatted_str)
       end
     end
